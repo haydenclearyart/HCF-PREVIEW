@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HCF Online Coaching — Draft Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* =============================================
+   DRAFT WATERMARK
+   ============================================= */
+.draft-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: #F4F0FE;
+  border-bottom: 2px solid #7B3FF2;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+.draft-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.draft-pill {
+  background: #7B3FF2;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  flex-shrink: 0;
+}
+.draft-text {
+  font-size: 12px;
+  color: #2E2E2B;
+  font-weight: 500;
+}
+.draft-text strong {
+  color: #7B3FF2;
+  font-weight: 700;
+}
+.draft-note {
+  font-size: 11px;
+  color: #5C5C58;
+  text-align: right;
+}
+
+/* Diagonal watermark across page */
+.draft-watermark {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9000;
+  overflow: hidden;
+}
+.draft-watermark::after {
+  content: 'DRAFT · NOT LIVE · DRAFT · NOT LIVE · DRAFT · NOT LIVE · DRAFT · NOT LIVE · DRAFT · NOT LIVE · DRAFT · NOT LIVE';
+  position: absolute;
+  top: 50%;
+  left: -20%;
+  width: 140%;
+  text-align: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  color: rgba(123, 63, 242, 0.04);
+  transform: translateY(-50%) rotate(-35deg);
+  white-space: nowrap;
+  text-transform: uppercase;
+  line-height: 3;
+  word-spacing: 24px;
+}
+
+/* =============================================
+   RESET & BASE
+   ============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #2E2E2B;
+  background: #fff;
+  padding-top: 48px; /* offset for draft banner */
+}
+img { display: block; max-width: 100%; }
+button { cursor: pointer; font-family: 'Poppins', sans-serif; }
+
+/* =============================================
+   NAV
+   ============================================= */
+.nav {
+  background: #000;
+  padding: 16px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 48px;
+  z-index: 100;
+}
+.nav-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.nav-links {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+.nav-link {
+  font-size: 11px;
+  color: rgba(255,255,255,.55);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color .2s;
+}
+.nav-link:hover { color: rgba(255,255,255,.9); }
+.nav-cta {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  background: #7B3FF2;
+  padding: 9px 16px;
+  text-decoration: none;
+  transition: background .2s;
+}
+.nav-cta:hover { background: #6830d4; }
+
+/* =============================================
+   PAGE HERO
+   ============================================= */
+.page-hero {
+  background: #000;
+  padding: 72px 48px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow-rule {
+  width: 28px;
+  height: 2px;
+  background: #7B3FF2;
+  flex-shrink: 0;
+}
+.eyebrow-text {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #7B3FF2;
+}
+.page-headline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1.0;
+  max-width: 640px;
+}
+.page-headline span { color: #7B3FF2; }
+.page-sub {
+  font-size: 15px;
+  color: rgba(255,255,255,.5);
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+/* =============================================
+   EVERYONE GETS EVERYTHING
+   ============================================= */
+.ege-section {
+  background: #fff;
+  padding: 80px 48px 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.ege-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.ege-headline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: #000;
+  line-height: .95;
+}
+.ege-headline span { color: #7B3FF2; }
+.ege-rule {
+  width: 56px;
+  height: 3px;
+  background: #7B3FF2;
+  margin: 24px auto 24px;
+}
+.ege-sub {
+  font-size: 15px;
+  color: #5C5C58;
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 48px;
+}
+.included-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 820px;
+}
+.included-item {
+  background: #EFEFEC;
+  border: 0.5px solid #DEDEDA;
+  padding: 20px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  text-align: left;
+}
+.inc-dot {
+  width: 9px;
+  height: 9px;
+  background: #7B3FF2;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.included-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: #000;
+  margin-bottom: 4px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.included-desc {
+  font-size: 13px;
+  color: #5C5C58;
+  line-height: 1.55;
+}
+.trial-note {
+  margin-top: 40px;
+  max-width: 580px;
+  background: #F4F0FE;
+  border-left: 4px solid #7B3FF2;
+  padding: 22px 26px;
+  text-align: left;
+}
+.trial-note-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #7B3FF2;
+  margin-bottom: 8px;
+}
+.trial-note-text {
+  font-size: 13px;
+  color: #2E2E2B;
+  line-height: 1.7;
+}
+
+/* =============================================
+   PAYING MORE
+   ============================================= */
+.paying-more {
+  background: #000;
+  padding: 36px 48px;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+.pm-rule {
+  width: 4px;
+  background: #7B3FF2;
+  flex-shrink: 0;
+  align-self: stretch;
+  min-height: 60px;
+}
+.pm-copy { flex: 1; }
+.pm-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #7B3FF2;
+  margin-bottom: 10px;
+}
+.pm-text {
+  font-size: 15px;
+  color: #fff;
+  line-height: 1.7;
+  max-width: 600px;
+}
+.pm-text strong { color: #7B3FF2; }
+
+/* =============================================
+   TOGGLE
+   ============================================= */
+.toggle-wrapper {
+  background: #EFEFEC;
+  padding: 32px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 0.5px solid #DEDEDA;
+}
+.toggle-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #5C5C58;
+}
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.toggle-opt {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  transition: color .2s;
+  user-select: none;
+}
+.toggle-opt.active { color: #000; }
+.toggle-opt.inactive { color: #ADADAD; }
+.toggle-track {
+  width: 56px;
+  height: 30px;
+  background: #DEDEDA;
+  border-radius: 100px;
+  cursor: pointer;
+  position: relative;
+  transition: background .25s;
+  border: none;
+  flex-shrink: 0;
+}
+.toggle-track.upfront { background: #7B3FF2; }
+.toggle-thumb {
+  width: 22px;
+  height: 22px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  transition: transform .25s;
+  box-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
+.toggle-track.upfront .toggle-thumb { transform: translateX(26px); }
+.save-badge {
+  background: #7B3FF2;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  opacity: 0;
+  transition: opacity .2s;
+}
+.save-badge.visible { opacity: 1; }
+
+/* =============================================
+   TIERS
+   ============================================= */
+.tiers-section {
+  background: #fff;
+  padding: 48px 48px 64px;
+}
+.tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.tier {
+  background: #fff;
+  border: 0.5px solid #DEDEDA;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.tier.featured { border: 2px solid #7B3FF2; }
+.tier.free-tier { border: 2px solid #000; }
+.tier-top {
+  padding: 20px 20px 16px;
+  border-bottom: 0.5px solid #EFEFEC;
+}
+.tier.featured .tier-top,
+.tier.free-tier .tier-top { background: #000; }
+.tier-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #7B3FF2;
+  margin-bottom: 6px;
+}
+.tier-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: #000;
+  margin-bottom: 8px;
+}
+.tier.featured .tier-name,
+.tier.free-tier .tier-name { color: #fff; }
+.duration-pill {
+  display: inline-block;
+  background: #EFEFEC;
+  padding: 3px 9px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #2E2E2B;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.tier.featured .duration-pill,
+.tier.free-tier .duration-pill {
+  background: #2E2E2B;
+  color: rgba(255,255,255,.6);
+}
+.tier-price {
+  padding: 18px 20px 14px;
+  border-bottom: 0.5px solid #EFEFEC;
+  background: #FAFAFA;
+  min-height: 86px;
+}
+.tier-price.is-free { background: #F4F0FE; }
+.price-main {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+.price-dollar {
+  font-size: 13px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 2px;
+}
+.price-amount {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: .01em;
+  transition: all .2s;
+}
+.price-free-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #7B3FF2;
+  letter-spacing: .01em;
+}
+.price-period {
+  font-size: 12px;
+  color: #5C5C58;
+  letter-spacing: .02em;
+  margin-left: 2px;
+}
+.price-total {
+  font-size: 11px;
+  color: #5C5C58;
+  margin-top: 5px;
+  letter-spacing: .02em;
+  min-height: 16px;
+  transition: all .2s;
+}
+.price-saving {
+  font-size: 10px;
+  color: #7B3FF2;
+  font-weight: 700;
+  letter-spacing: .04em;
+  margin-top: 3px;
+  min-height: 14px;
+  transition: all .2s;
+}
+.free-sub {
+  font-size: 9px;
+  color: #7B3FF2;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.tier-desc {
+  padding: 16px 20px;
+  flex: 1;
+}
+.tier-desc-text {
+  font-size: 13px;
+  color: #5C5C58;
+  line-height: 1.65;
+}
+.tier-btn {
+  margin: 0 20px 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 13px;
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  transition: background .2s, color .2s;
+}
+.tier-btn.dark { background: #000; color: #fff; }
+.tier-btn.dark:hover { background: #2E2E2B; }
+.tier-btn.purple { background: #7B3FF2; color: #fff; }
+.tier-btn.purple:hover { background: #6830d4; }
+.tier-btn.free { background: #7B3FF2; color: #fff; }
+.tier-btn.free:hover { background: #6830d4; }
+.tier-btn.outline { background: transparent; color: #000; border: 1.5px solid #000; }
+.tier-btn.outline:hover { background: #000; color: #fff; }
+
+/* =============================================
+   NOT SURE
+   ============================================= */
+.not-sure {
+  background: #EFEFEC;
+  padding: 52px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+.ns-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.ns-headline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  color: #000;
+  margin-bottom: 10px;
+  line-height: 1.1;
+}
+.ns-sub {
+  font-size: 14px;
+  color: #5C5C58;
+  line-height: 1.65;
+  max-width: 440px;
+}
+.ns-btn {
+  background: #7B3FF2;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 16px 28px;
+  border: none;
+  border-radius: 0;
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: background .2s;
+}
+.ns-btn:hover { background: #6830d4; }
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer {
+  background: #000;
+  border-top: 0.5px solid #3A3A36;
+  padding: 32px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.footer-handle {
+  font-size: 11px;
+  color: #7B3FF2;
+  margin-bottom: 3px;
+}
+.footer-legal {
+  font-size: 10px;
+  color: rgba(255,255,255,.2);
+}
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+.footer-link {
+  font-size: 10px;
+  color: rgba(255,255,255,.35);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  text-decoration: none;
+  transition: color .2s;
+}
+.footer-link:hover { color: rgba(255,255,255,.7); }
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 900px) {
+  .nav { padding: 14px 24px; }
+  .nav-links { gap: 16px; }
+  .page-hero { padding: 48px 24px 40px; }
+  .page-headline { font-size: 36px; }
+  .ege-section { padding: 56px 24px 48px; }
+  .ege-headline { font-size: 44px; }
+  .included-grid { grid-template-columns: repeat(2, 1fr); }
+  .paying-more { padding: 28px 24px; }
+  .toggle-wrapper { padding: 24px; }
+  .tiers-section { padding: 36px 24px 48px; }
+  .tiers-grid { grid-template-columns: repeat(2, 1fr); }
+  .not-sure { flex-direction: column; padding: 40px 24px; gap: 20px; }
+  .ns-btn { width: 100%; text-align: center; }
+  .footer { flex-direction: column; gap: 20px; padding: 28px 24px; text-align: center; }
+  .footer-links { justify-content: center; }
+  .draft-banner { flex-direction: column; gap: 4px; text-align: center; }
+  .draft-note { text-align: center; }
+}
+@media (max-width: 560px) {
+  .page-headline { font-size: 28px; }
+  .ege-headline { font-size: 32px; }
+  .included-grid { grid-template-columns: 1fr; }
+  .tiers-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- DRAFT WATERMARK OVERLAY -->
+<div class="draft-watermark" aria-hidden="true"></div>
+
+<!-- DRAFT BANNER -->
+<div class="draft-banner" role="banner" aria-label="Draft preview notice">
+  <div class="draft-badge">
+    <span class="draft-pill">Draft</span>
+    <span class="draft-text">This page is a <strong>work in progress</strong> — not live, not final. Shared for feedback only.</span>
+  </div>
+  <span class="draft-note">Prices, copy, and imagery subject to change before launch.</span>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand" style="text-decoration:none;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;letter-spacing:.12em;text-transform:uppercase;">Hayden Cleary Fitness</a>
+  <div class="nav-links">
+    <a href="#" class="nav-link">The Fit Files</a>
+    <a href="#" class="nav-link">Coaching</a>
+    <a href="#" class="nav-link">Challenges</a>
+    <a href="#" class="nav-link">About</a>
+    <a href="#" class="nav-cta">Free Guide</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="eyebrow">
+    <span class="eyebrow-rule"></span>
+    <span class="eyebrow-text">1-on-1 Online Coaching</span>
+  </div>
+  <h1 class="page-headline">The right package<br>is the one you'll<br><span>actually finish.</span></h1>
+  <p class="page-sub">Every package includes everything. The only difference is time. More weeks means more room to learn, adjust, and make this your life — not just a phase.</p>
+</section>
+
+<!-- EVERYONE GETS EVERYTHING -->
+<section class="ege-section">
+  <div class="ege-eyebrow">
+    <span class="eyebrow-rule"></span>
+    <span class="eyebrow-text">What's included</span>
+  </div>
+  <h2 class="ege-headline">Everyone<br><span>Gets</span><br>Everything.</h2>
+  <div class="ege-rule"></div>
+  <p class="ege-sub">Every package — from the free trial to the Full Send — comes with the full suite of coaching resources. Nothing is locked behind a higher tier. You're not paying for more features. You're paying for more time.</p>
+
+  <div class="included-grid">
+    <div class="included-item">
+      <div class="inc-dot"></div>
+      <div>
+        <div class="included-title">Custom training program</div>
+        <div class="included-desc">Built around your goal, schedule, and equipment — adjusted as you progress.</div>
+      </div>
+    </div>
+    <div class="included-item">
+      <div class="inc-dot"></div>
+      <div>
+        <div class="included-title">Nutrition guidance</div>
+        <div class="included-desc">A practical approach to eating that fits real life — not a meal plan that falls apart on day three.</div>
+      </div>
+    </div>
+    <div class="included-item">
+      <div class="inc-dot"></div>
+      <div>
+        <div class="included-title">Direct access to Hayden</div>
+        <div class="included-desc">Questions, check-ins, adjustments — not a chatbot, not a template reply. The real thing.</div>
+      </div>
+    </div>
+    <div class="included-item">
+      <div class="inc-dot"></div>
+      <div>
+        <div class="included-title">Weekly check-ins</div>
+        <div class="included-desc">Progress reviewed every week. What's working, what needs adjusting, what comes next.</div>
+      </div>
+    </div>
+    <div class="included-item">
+      <div class="inc-dot"></div>
+      <div>
+        <div class="included-title">Full Fit Files access</div>
+        <div class="included-desc">All five guides included with every coaching package — no extra charge.</div>
+      </div>
+    </div>
+    <div class="included-item">
+      <div class="inc-dot"></div>
+      <div>
+        <div class="included-title">Program adjustments</div>
+        <div class="included-desc">Life changes, the plan changes with it. No rigid programs that fall apart the moment something shifts.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="trial-note">
+    <div class="trial-note-label">About The Trust — free trial</div>
+    <p class="trial-note-text">The Trust is a free 9-day ebook trial. You download the plan, you experience the framework, and you see if the way Hayden coaches works for you — at zero cost, zero risk. No credit card. No catch. If it clicks, you'll know exactly which package to step into next.</p>
+  </div>
+</section>
+
+<!-- PAYING MORE DISCLAIMER -->
+<section class="paying-more">
+  <div class="pm-rule"></div>
+  <div class="pm-copy">
+    <div class="pm-label">A straight answer on pricing</div>
+    <p class="pm-text">Paying more <strong>doesn't mean you get more resources.</strong> It means you're committing to a longer period of time — and time is what actually produces results. Four weeks will teach you. Eight weeks will change you. Twelve weeks will make it permanent.</p>
+  </div>
+</section>
+
+<!-- TOGGLE -->
+<div class="toggle-wrapper">
+  <span class="toggle-label">Choose how you'd like to pay</span>
+  <div class="toggle-row">
+    <span class="toggle-opt active" id="opt-dd">Direct debit</span>
+    <button class="toggle-track" id="toggle" onclick="flipToggle()" aria-label="Switch between direct debit and upfront payment">
+      <div class="toggle-thumb"></div>
+    </button>
+    <span class="toggle-opt inactive" id="opt-up">Pay upfront</span>
+    <span class="save-badge" id="save-badge">Save up to 20%</span>
+  </div>
+</div>
+
+<!-- TIERS -->
+<section class="tiers-section">
+  <div class="tiers-grid">
+
+    <!-- THE TRUST — FREE -->
+    <div class="tier free-tier">
+      <div class="tier-top">
+        <div class="tier-tag">Free — no catch</div>
+        <div class="tier-name">The Trust</div>
+        <span class="duration-pill">9-day ebook trial</span>
+      </div>
+      <div class="tier-price is-free">
+        <div class="price-main">
+          <span class="price-free-label">Free</span>
+        </div>
+        <div class="price-total">No credit card required</div>
+        <div class="free-sub">Download instantly</div>
+      </div>
+      <div class="tier-desc">
+        <p class="tier-desc-text">Download the Trust ebook, follow the 9-day framework, and experience exactly how Hayden coaches — before spending a single dollar. If it resonates, stepping into a paid package is the obvious next move.</p>
+      </div>
+      <button class="tier-btn free">Download free</button>
+    </div>
+
+    <!-- THE STARTER -->
+    <div class="tier">
+      <div class="tier-top">
+        <div class="tier-tag">Build the habit</div>
+        <div class="tier-name">The Starter</div>
+        <span class="duration-pill">4 weeks</span>
+      </div>
+      <div class="tier-price">
+        <div class="price-main">
+          <span class="price-dollar">$</span>
+          <span class="price-amount" id="price-starter">60</span>
+          <span class="price-period">/ week</span>
+        </div>
+        <div class="price-total" id="total-starter">$240 billed as one payment</div>
+        <div class="price-saving" id="saving-starter"></div>
+      </div>
+      <div class="tier-desc">
+        <p class="tier-desc-text">Four weeks to build the habits and get a real taste of what a new lifestyle looks like. Enough time to feel the difference — not just understand it.</p>
+      </div>
+      <button class="tier-btn dark">Start the Starter</button>
+    </div>
+
+    <!-- THE TRANSFORMATION -->
+    <div class="tier featured">
+      <div class="tier-top">
+        <div class="tier-tag">Most popular</div>
+        <div class="tier-name">The Transformation</div>
+        <span class="duration-pill">8 weeks</span>
+      </div>
+      <div class="tier-price">
+        <div class="price-main">
+          <span class="price-dollar">$</span>
+          <span class="price-amount" id="price-transform">57</span>
+          <span class="price-period">/ week</span>
+        </div>
+        <div class="price-total" id="total-transform">$456 billed as one payment</div>
+        <div class="price-saving" id="saving-transform"></div>
+      </div>
+      <div class="tier-desc">
+        <p class="tier-desc-text">Eight weeks gives you time to not just learn the skills — but implement and adjust them. Things go sideways. Plans change. Eight weeks is where you learn how to handle that and keep going anyway.</p>
+      </div>
+      <button class="tier-btn purple">Start the Transformation</button>
+    </div>
+
+    <!-- THE FULL SEND -->
+    <div class="tier">
+      <div class="tier-top">
+        <div class="tier-tag">Hayden's favourite</div>
+        <div class="tier-name">The Full Send</div>
+        <span class="duration-pill">12 weeks</span>
+      </div>
+      <div class="tier-price">
+        <div class="price-main">
+          <span class="price-dollar">$</span>
+          <span class="price-amount" id="price-fullsend">55</span>
+          <span class="price-period">/ week</span>
+        </div>
+        <div class="price-total" id="total-fullsend">$660 billed as one payment</div>
+        <div class="price-saving" id="saving-fullsend"></div>
+      </div>
+      <div class="tier-desc">
+        <p class="tier-desc-text">12 weeks of structured, periodised coaching that doesn't just teach you the lifestyle — it makes it yours. By the end it won't feel like a program. It'll just feel like your life. That's when 99.9% of clients fire me and thank me for it.</p>
+      </div>
+      <button class="tier-btn dark">Start the Full Send</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- NOT SURE -->
+<section class="not-sure">
+  <div>
+    <div class="ns-eyebrow">
+      <span class="eyebrow-rule"></span>
+      <span class="eyebrow-text">Still deciding?</span>
+    </div>
+    <h3 class="ns-headline">Not sure where<br>to start?</h3>
+    <p class="ns-sub">Download The Trust for free. Nine days, zero cost, zero risk. If the framework clicks, you'll know exactly which package to move into. No pressure, no hard sell. Just coaching.</p>
+  </div>
+  <button class="ns-btn">Download free ebook</button>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <div class="footer-brand">Hayden Cleary Fitness</div>
+    <div class="footer-handle">@_haydencleary</div>
+    <div class="footer-legal">© 2026 Hayden Cleary Fitness · All rights reserved</div>
+  </div>
+  <div class="footer-links">
+    <a href="#" class="footer-link">Privacy</a>
+    <a href="#" class="footer-link">Terms</a>
+    <a href="#" class="footer-link">Contact</a>
+  </div>
+</footer>
+
+<script>
+const pricing = {
+  dd: {
+    starter:   { amount: '60', total: '$240 billed as one payment',  saving: '' },
+    transform: { amount: '57', total: '$456 billed as one payment',  saving: '' },
+    fullsend:  { amount: '55', total: '$660 billed as one payment',  saving: '' },
+  },
+  up: {
+    starter:   { amount: '50', total: '$200 paid upfront', saving: 'Save $40' },
+    transform: { amount: '47', total: '$376 paid upfront', saving: 'Save $80' },
+    fullsend:  { amount: '45', total: '$540 paid upfront', saving: 'Save $120' },
+  }
+};
+
+let isUpfront = false;
+
+function flipToggle() {
+  isUpfront = !isUpfront;
+  const track   = document.getElementById('toggle');
+  const optDD   = document.getElementById('opt-dd');
+  const optUP   = document.getElementById('opt-up');
+  const badge   = document.getElementById('save-badge');
+
+  track.classList.toggle('upfront', isUpfront);
+  optDD.classList.toggle('active',   !isUpfront);
+  optDD.classList.toggle('inactive',  isUpfront);
+  optUP.classList.toggle('active',    isUpfront);
+  optUP.classList.toggle('inactive', !isUpfront);
+  badge.classList.toggle('visible',   isUpfront);
+
+  const mode = isUpfront ? 'up' : 'dd';
+  ['starter', 'transform', 'fullsend'].forEach(t => {
+    const p = pricing[mode][t];
+    document.getElementById('price-'  + t).textContent = p.amount;
+    document.getElementById('total-'  + t).textContent = p.total;
+    document.getElementById('saving-' + t).textContent = p.saving;
+  });
+}
+</script>
+</body>
+</html>

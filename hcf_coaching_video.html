@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coaching — Hayden Cleary Fitness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased;height:100%}
+body{font-family:'Poppins',sans-serif;background:#0D0D14;color:#fff;min-height:100vh;display:flex;flex-direction:column}
+
+/* NAV */
+.nav{background:#0D0D14;padding:16px 48px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(123,63,242,.2);position:sticky;top:0;z-index:100;flex-shrink:0}
+.nav-brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:#fff;text-decoration:none;transition:opacity .2s}
+.nav-brand:hover{opacity:.75}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-link{font-size:11px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;font-weight:500;text-decoration:none;transition:color .2s}
+.nav-link:hover{color:rgba(255,255,255,.9)}
+.nav-link.active{color:#A855F7;border-bottom:1px solid #7B3FF2;padding-bottom:2px}
+.nav-cta{font-size:11px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.08em;background:linear-gradient(135deg,#7B3FF2,#A855F7);padding:9px 16px;text-decoration:none;transition:opacity .2s}
+.nav-cta:hover{opacity:.85}
+
+/* MAIN */
+main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 48px;position:relative;overflow:hidden}
+
+/* Background glows */
+.bg-glow-1{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(123,63,242,.12) 0%,transparent 70%);pointer-events:none}
+.bg-glow-2{position:absolute;bottom:-80px;left:20%;width:300px;height:300px;background:radial-gradient(circle,rgba(168,85,247,.08) 0%,transparent 70%);pointer-events:none}
+.bg-glow-3{position:absolute;bottom:-60px;right:15%;width:250px;height:250px;background:radial-gradient(circle,rgba(123,63,242,.06) 0%,transparent 70%);pointer-events:none}
+
+/* EYEBROW */
+.eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.eyebrow-rule{width:28px;height:2px;background:linear-gradient(90deg,#7B3FF2,#A855F7);flex-shrink:0}
+.eyebrow-text{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#A855F7}
+
+/* VIDEO CONTAINER */
+.video-shell{position:relative;width:100%;max-width:860px;border-radius:4px;padding:6px;background:linear-gradient(135deg,#7B3FF2,#A855F7,#7B3FF2);box-shadow:0 0 80px rgba(123,63,242,.35),0 0 160px rgba(123,63,242,.15);margin-bottom:48px}
+.video-shell::before{content:'';position:absolute;inset:-2px;border-radius:6px;background:linear-gradient(135deg,#7B3FF2,#CF4530,#A855F7,#7B3FF2);background-size:300% 300%;animation:gradshift 6s ease infinite;z-index:-1;filter:blur(8px);opacity:.6}
+@keyframes gradshift{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.video-inner{background:#0D0D14;border-radius:2px;overflow:hidden;position:relative;aspect-ratio:16/9;width:100%}
+.video-inner iframe,.video-inner video{width:100%;height:100%;display:block;border:none}
+
+/* VIDEO PLACEHOLDER — shown until Hayden adds his video */
+.video-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;background:linear-gradient(135deg,#0D0D14,#1A0D2E);cursor:pointer;position:relative;overflow:hidden}
+.placeholder-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:300px;height:300px;background:radial-gradient(circle,rgba(123,63,242,.2),transparent 70%);pointer-events:none}
+.play-btn{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#7B3FF2,#A855F7);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;flex-shrink:0}
+.video-placeholder:hover .play-btn{transform:scale(1.08);box-shadow:0 0 32px rgba(123,63,242,.5)}
+.play-icon{width:0;height:0;border-top:14px solid transparent;border-bottom:14px solid transparent;border-left:22px solid #fff;margin-left:4px}
+.placeholder-label{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+
+/* HOW TO EMBED NOTE — shown in placeholder only */
+.embed-note{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.04em;text-align:center;max-width:280px;line-height:1.6}
+
+/* QUOTE SECTION */
+.quote-wrap{max-width:720px;width:100%;text-align:center;position:relative;z-index:1}
+.quote-rule{width:48px;height:2px;background:linear-gradient(90deg,#7B3FF2,#A855F7);margin:0 auto 28px}
+.quote-text{font-family:'Poppins',sans-serif;font-size:18px;font-weight:400;line-height:1.75;color:rgba(255,255,255,.85);font-style:italic;margin-bottom:20px}
+.quote-text strong{color:#fff;font-weight:600;font-style:normal}
+.quote-attr{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A855F7}
+
+/* CTA ROW */
+.cta-row{display:flex;gap:16px;align-items:center;justify-content:center;margin-top:40px;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(135deg,#7B3FF2,#A855F7);color:#fff;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:14px 28px;border:none;cursor:pointer;border-radius:0;text-decoration:none;transition:opacity .2s}
+.btn-primary:hover{opacity:.85}
+.btn-secondary{background:transparent;color:rgba(255,255,255,.6);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;border:1px solid rgba(255,255,255,.15);cursor:pointer;border-radius:0;text-decoration:none;transition:border-color .2s,color .2s}
+.btn-secondary:hover{border-color:rgba(123,63,242,.5);color:#fff}
+
+/* FOOTER */
+.footer{background:linear-gradient(135deg,#0D0D14,#1A0D2E);border-top:1px solid rgba(123,63,242,.2);padding:20px 48px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.footer-brand{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;margin-bottom:3px}
+.footer-handle{font-size:10px;color:#A855F7}
+.footer-legal{font-size:9px;color:rgba(255,255,255,.2);margin-top:2px}
+.footer-links{display:flex;gap:20px}
+.footer-link{font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;text-decoration:none;transition:color .2s}
+.footer-link:hover{color:rgba(255,255,255,.7)}
+
+@media(max-width:768px){
+  .nav{padding:14px 24px}.nav-links{gap:16px}
+  main{padding:40px 24px}
+  .quote-text{font-size:15px}
+  .footer{flex-direction:column;gap:16px;padding:20px 24px;text-align:center}
+  .footer-links{justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Hayden Cleary Fitness</a>
+  <div class="nav-links">
+    <a href="hcf_fit_files_v2.html" class="nav-link">The Fit Files</a>
+    <a href="hcf_coaching_video.html" class="nav-link active">Coaching</a>
+    <a href="#" class="nav-link">Challenges</a>
+    <a href="#" class="nav-link">About</a>
+    <a href="#" class="nav-cta">Free Guide</a>
+  </div>
+</nav>
+
+<main>
+  <div class="bg-glow-1"></div>
+  <div class="bg-glow-2"></div>
+  <div class="bg-glow-3"></div>
+
+  <div class="eyebrow">
+    <span class="eyebrow-rule"></span>
+    <span class="eyebrow-text">1-on-1 Online Coaching</span>
+  </div>
+
+  <!-- VIDEO SHELL WITH PURPLE GLOW BORDER -->
+  <div class="video-shell">
+    <div class="video-inner">
+      <!--
+        TO ADD YOUR VIDEO:
+        Option 1 — YouTube: replace the placeholder div below with:
+        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+
+        Option 2 — Direct file: replace with:
+        <video controls poster="your-thumbnail.jpg">
+          <source src="your-video.mp4" type="video/mp4">
+        </video>
+      -->
+      <div class="video-placeholder">
+        <div class="placeholder-glow"></div>
+        <div class="play-btn"><div class="play-icon"></div></div>
+        <div class="placeholder-label">Hayden's coaching video</div>
+        <div class="embed-note">Drop your YouTube link or video file here to go live</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HAYDEN'S QUOTE -->
+  <div class="quote-wrap">
+    <div class="quote-rule"></div>
+    <p class="quote-text">
+      "That's me. That's how I am. <strong>There are no secrets, nothing hidden behind a fancy website or a team running marketing.</strong> It's just simply me doing what I do, doing what I love."
+    </p>
+    <span class="quote-attr">— Hayden Cleary</span>
+  </div>
+
+  <div class="cta-row">
+    <a href="hcf_coaching_page_v3.html" class="btn-primary">View coaching packages</a>
+    <a href="hcf_fit_files_v2.html" class="btn-secondary">Browse The Fit Files</a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div>
+    <div class="footer-brand">Hayden Cleary Fitness</div>
+    <div class="footer-handle">@_haydencleary</div>
+    <div class="footer-legal">© 2026 Hayden Cleary Fitness · All rights reserved</div>
+  </div>
+  <div class="footer-links">
+    <a href="#" class="footer-link">Privacy</a>
+    <a href="#" class="footer-link">Terms</a>
+    <a href="#" class="footer-link">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
