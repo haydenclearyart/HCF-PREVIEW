@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Challenges — Hayden Cleary Fitness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* =============================================
+   DRAFT BANNER — DELETE THIS WHOLE BLOCK BEFORE GO-LIVE
+   ============================================= */
+.draft-banner{position:fixed;top:0;left:0;right:0;z-index:9999;background:#F4F0FE;border-bottom:2px solid #7B3FF2;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-family:'Poppins',sans-serif;}
+.draft-badge{display:flex;align-items:center;gap:10px;}
+.draft-pill{background:#7B3FF2;color:#fff;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;flex-shrink:0;}
+.draft-text{font-size:12px;color:#2E2E2B;font-weight:500;}
+.draft-text strong{color:#7B3FF2;font-weight:700;}
+.draft-note{font-size:11px;color:#5C5C58;text-align:right;}
+
+/* =============================================
+   RESET & BASE
+   ============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; }
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #2E2E2B;
+  background: #fff;
+  padding-top: 48px; /* offset for draft banner — remove with the banner */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+a { text-decoration: none; }
+
+/* =============================================
+   NAV
+   ============================================= */
+.nav {
+  background: #000;
+  padding: 16px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.nav-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.nav-links { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+.nav-link {
+  font-size: 11px;
+  color: rgba(255,255,255,.55);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 500;
+  transition: color .2s;
+}
+.nav-link:hover { color: rgba(255,255,255,.9); }
+.nav-link.is-active { color: #7B3FF2; }
+.nav-cta {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  background: #7B3FF2;
+  padding: 9px 16px;
+  transition: background .2s;
+}
+.nav-cta:hover { background: #6830d4; }
+
+/* =============================================
+   COMING SOON
+   ============================================= */
+.soon {
+  flex: 1;
+  background: #000;
+  padding: 140px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+}
+.eyebrow { display: flex; align-items: center; gap: 10px; }
+.eyebrow-rule { width: 28px; height: 2px; background: #7B3FF2; flex-shrink: 0; }
+.eyebrow-text {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #7B3FF2;
+}
+.soon-headline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 96px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: .95;
+}
+.soon-headline span { color: #7B3FF2; }
+.soon-sub {
+  font-size: 15px;
+  color: rgba(255,255,255,.5);
+  line-height: 1.7;
+  max-width: 460px;
+}
+.soon-btn {
+  margin-top: 16px;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.35);
+  padding: 14px 26px;
+  transition: background .2s, border-color .2s, color .2s;
+}
+.soon-btn:hover { background: #7B3FF2; border-color: #7B3FF2; }
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer {
+  background: #000;
+  border-top: 1px solid #2A2A2A;
+  padding: 32px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.footer-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.footer-handle { font-size: 12px; color: #7B3FF2; margin-top: 4px; }
+.footer-legal { font-size: 11px; color: rgba(255,255,255,.35); margin-top: 10px; }
+.footer-links { display: flex; gap: 22px; }
+.footer-link {
+  font-size: 11px;
+  color: rgba(255,255,255,.45);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  transition: color .2s;
+}
+.footer-link:hover { color: #7B3FF2; }
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 720px) {
+  .nav { padding: 14px 20px; }
+  .nav-links { gap: 16px; }
+  .soon { padding: 90px 20px; }
+  .soon-headline { font-size: 52px; }
+  .footer { padding: 28px 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- DRAFT BANNER — DELETE THIS BLOCK BEFORE GO-LIVE -->
+<div class="draft-banner" role="banner" aria-label="Draft preview notice">
+  <div class="draft-badge">
+    <span class="draft-pill">Draft</span>
+    <span class="draft-text">This page is a <strong>work in progress</strong> — not live, not final. Shared for feedback only.</span>
+  </div>
+  <span class="draft-note">Prices, copy, and imagery subject to change before launch.</span>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Hayden Cleary Fitness</a>
+  <div class="nav-links">
+    <a href="hcf_fit_files_v2.html" class="nav-link">The Fit Files</a>
+    <a href="index.html" class="nav-link">Coaching</a>
+    <a href="challenges.html" class="nav-link is-active">Challenges</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="hcf_lead_magnet_landing.html" class="nav-cta">Free Guide</a>
+  </div>
+</nav>
+
+<!-- COMING SOON -->
+<main class="soon">
+  <div class="eyebrow">
+    <span class="eyebrow-rule"></span>
+    <span class="eyebrow-text">Challenges</span>
+  </div>
+  <h1 class="soon-headline">Coming<br><span>Soon.</span></h1>
+  <p class="soon-sub">Group challenges are being built out. When the next one opens, it'll go up here first.</p>
+  <a href="index.html" class="soon-btn">Back to coaching</a>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <div class="footer-brand">Hayden Cleary Fitness</div>
+    <div class="footer-handle">@_haydencleary</div>
+    <div class="footer-legal">© 2026 Hayden Cleary Fitness · All rights reserved</div>
+  </div>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/_haydencleary" class="footer-link" target="_blank" rel="noopener">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
