@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Hayden Cleary Fitness</title>
+<meta name="description" content="Online coaching built for people who've started before and stopped. One coach, direct access, and a plan designed to make itself unnecessary.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* =============================================
+   DRAFT BANNER — DELETE THIS WHOLE BLOCK BEFORE GO-LIVE
+   ============================================= */
+.draft-banner{position:fixed;top:0;left:0;right:0;z-index:9999;background:#F4F0FE;border-bottom:2px solid #7B3FF2;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-family:'Poppins',sans-serif;}
+.draft-badge{display:flex;align-items:center;gap:10px;}
+.draft-pill{background:#7B3FF2;color:#fff;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;flex-shrink:0;}
+.draft-text{font-size:12px;color:#2E2E2B;font-weight:500;}
+.draft-text strong{color:#7B3FF2;font-weight:700;}
+.draft-note{font-size:11px;color:#5C5C58;text-align:right;}
+
+/* =============================================
+   RESET & BASE
+   ============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #2E2E2B;
+  background: #fff;
+  padding-top: 48px; /* offset for draft banner — remove with the banner */
+}
+a { text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* =============================================
+   NAV
+   ============================================= */
+.nav {
+  background: #000;
+  padding: 16px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 48px; /* sits under draft banner — change to 0 when banner is removed */
+  z-index: 100;
+}
+.nav-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.nav-links { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+.nav-link {
+  font-size: 11px;
+  color: rgba(255,255,255,.55);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 500;
+  transition: color .2s;
+}
+.nav-link:hover { color: rgba(255,255,255,.9); }
+.nav-link.is-active { color: #7B3FF2; }
+.nav-cta {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  background: #7B3FF2;
+  padding: 9px 16px;
+  transition: background .2s;
+}
+.nav-cta:hover { background: #6830d4; }
+
+/* =============================================
+   SHARED
+   ============================================= */
+.eyebrow { display: flex; align-items: center; gap: 10px; }
+.eyebrow-rule { width: 28px; height: 2px; background: #7B3FF2; flex-shrink: 0; }
+.eyebrow-text {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #7B3FF2;
+}
+
+/* =============================================
+   HERO
+   ============================================= */
+.hero {
+  background: #000;
+  padding: 76px 48px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.hero-headline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1.0;
+  max-width: 720px;
+}
+.hero-headline span { color: #7B3FF2; }
+.hero-sub {
+  font-size: 15px;
+  color: rgba(255,255,255,.5);
+  line-height: 1.7;
+  max-width: 500px;
+}
+
+/* =============================================
+   STORY
+   ============================================= */
+.story {
+  background: #fff;
+  padding: 80px 48px;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 48px;
+  align-items: start;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.story-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: #000;
+  line-height: 1.05;
+}
+.story-rule { width: 56px; height: 3px; background: #7B3FF2; margin-top: 18px; }
+.story-body { max-width: 660px; }
+.story-body p {
+  font-size: 16px;
+  color: #5C5C58;
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+.story-body p.lead { font-size: 19px; color: #2E2E2B; font-weight: 500; line-height: 1.65; }
+.story-body strong { color: #000; font-weight: 600; }
+.signature {
+  margin-top: 26px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #000;
+}
+.signature span { display: block; font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: .1em; color: #8A8A85; margin-top: 4px; }
+
+/* =============================================
+   PRINCIPLES
+   ============================================= */
+.principles {
+  background: #EFEFEC;
+  padding: 80px 48px;
+}
+.principles-inner { max-width: 1180px; margin: 0 auto; }
+.section-headline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: #000;
+  line-height: .98;
+  margin: 16px 0 10px;
+}
+.section-headline span { color: #7B3FF2; }
+.section-sub { font-size: 15px; color: #5C5C58; max-width: 560px; line-height: 1.7; }
+.principle-grid {
+  margin-top: 44px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.principle {
+  background: #fff;
+  border: 0.5px solid #DEDEDA;
+  padding: 30px 28px;
+}
+.principle-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: #7B3FF2;
+  margin-bottom: 14px;
+}
+.principle-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: #000;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.principle-text { font-size: 14px; color: #5C5C58; line-height: 1.7; }
+
+/* =============================================
+   HIRE ME TO FIRE ME
+   ============================================= */
+.hmtfm {
+  background: #000;
+  padding: 76px 48px;
+}
+.hmtfm-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 28px; align-items: flex-start; }
+.hmtfm-rule { width: 4px; background: #7B3FF2; align-self: stretch; flex-shrink: 0; min-height: 80px; }
+.hmtfm-headline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 46px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1.0;
+  margin: 14px 0 18px;
+}
+.hmtfm-headline span { color: #7B3FF2; }
+.hmtfm-text { font-size: 15px; color: rgba(255,255,255,.6); line-height: 1.8; max-width: 620px; margin-bottom: 14px; }
+.hmtfm-text strong { color: #fff; font-weight: 600; }
+
+/* =============================================
+   FIT / NOT FIT
+   ============================================= */
+.fit { background: #fff; padding: 80px 48px; }
+.fit-inner { max-width: 1180px; margin: 0 auto; }
+.fit-grid { margin-top: 44px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.fit-col { border: 0.5px solid #DEDEDA; padding: 32px 30px; }
+.fit-col.yes { background: #F4F0FE; border-color: #7B3FF2; }
+.fit-col.no { background: #EFEFEC; }
+.fit-col-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: #000;
+  margin-bottom: 22px;
+}
+.fit-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; }
+.fit-mark { width: 9px; height: 9px; flex-shrink: 0; margin-top: 7px; }
+.fit-col.yes .fit-mark { background: #7B3FF2; }
+.fit-col.no .fit-mark { background: #B5B5B0; }
+.fit-text { font-size: 14px; color: #5C5C58; line-height: 1.65; }
+.fit-col.yes .fit-text { color: #2E2E2B; }
+
+/* =============================================
+   WHAT YOU GET
+   ============================================= */
+.get { background: #EFEFEC; padding: 80px 48px; }
+.get-inner { max-width: 1180px; margin: 0 auto; }
+.get-grid { margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.get-item { background: #fff; border: 0.5px solid #DEDEDA; padding: 24px; display: flex; gap: 12px; align-items: flex-start; }
+.get-dot { width: 9px; height: 9px; background: #7B3FF2; flex-shrink: 0; margin-top: 5px; }
+.get-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #000;
+  margin-bottom: 5px;
+}
+.get-desc { font-size: 13px; color: #5C5C58; line-height: 1.6; }
+
+/* =============================================
+   CREDENTIALS
+   ============================================= */
+.creds { background: #fff; padding: 64px 48px; }
+.creds-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  background: #F4F0FE;
+  border-left: 4px solid #7B3FF2;
+  padding: 30px 34px;
+}
+.creds-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #7B3FF2;
+  margin-bottom: 12px;
+}
+.creds-list { display: flex; gap: 40px; flex-wrap: wrap; }
+.creds-item { font-size: 14px; color: #2E2E2B; line-height: 1.6; }
+.creds-item strong { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 13px; letter-spacing: .05em; text-transform: uppercase; color: #000; margin-bottom: 2px; }
+
+/* =============================================
+   CTA
+   ============================================= */
+.cta { background: #000; padding: 80px 48px; }
+.cta-inner { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; }
+.cta-headline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1.0;
+  margin: 14px 0 14px;
+}
+.cta-headline span { color: #7B3FF2; }
+.cta-sub { font-size: 15px; color: rgba(255,255,255,.5); line-height: 1.7; max-width: 460px; }
+.cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 16px 28px;
+  transition: background .2s, border-color .2s, color .2s;
+}
+.btn-primary { background: #7B3FF2; color: #fff; }
+.btn-primary:hover { background: #6830d4; }
+.btn-ghost { border: 1px solid rgba(255,255,255,.35); color: #fff; }
+.btn-ghost:hover { border-color: #7B3FF2; background: #7B3FF2; }
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer {
+  background: #000;
+  border-top: 1px solid #2A2A2A;
+  padding: 32px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.footer-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.footer-handle { font-size: 12px; color: #7B3FF2; margin-top: 4px; }
+.footer-legal { font-size: 11px; color: rgba(255,255,255,.35); margin-top: 10px; }
+.footer-links { display: flex; gap: 22px; }
+.footer-link {
+  font-size: 11px;
+  color: rgba(255,255,255,.45);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  transition: color .2s;
+}
+.footer-link:hover { color: #7B3FF2; }
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 900px) {
+  .story { grid-template-columns: 1fr; gap: 24px; padding: 60px 24px; }
+  .principle-grid, .fit-grid { grid-template-columns: 1fr; }
+  .get-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .nav { padding: 14px 20px; }
+  .nav-links { gap: 16px; }
+  .hero { padding: 56px 20px 48px; }
+  .hero-headline { font-size: 34px; }
+  .section-headline, .cta-headline, .hmtfm-headline { font-size: 30px; }
+  .principles, .fit, .get, .cta, .hmtfm { padding: 56px 20px; }
+  .creds { padding: 48px 20px; }
+  .footer { padding: 28px 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- DRAFT BANNER — DELETE THIS BLOCK BEFORE GO-LIVE -->
+<div class="draft-banner" role="banner" aria-label="Draft preview notice">
+  <div class="draft-badge">
+    <span class="draft-pill">Draft</span>
+    <span class="draft-text">This page is a <strong>work in progress</strong> — not live, not final. Shared for feedback only.</span>
+  </div>
+  <span class="draft-note">Prices, copy, and imagery subject to change before launch.</span>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Hayden Cleary Fitness</a>
+  <div class="nav-links">
+    <a href="hcf_fit_files_v2.html" class="nav-link">The Fit Files</a>
+    <a href="index.html" class="nav-link">Coaching</a>
+    <a href="challenges.html" class="nav-link">Challenges</a>
+    <a href="about.html" class="nav-link is-active">About</a>
+    <a href="hcf_lead_magnet_landing.html" class="nav-cta">Free Guide</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">
+    <span class="eyebrow-rule"></span>
+    <span class="eyebrow-text">About</span>
+  </div>
+  <h1 class="hero-headline">I'm not trying to be<br>your coach <span>forever.</span></h1>
+  <p class="hero-sub">I'm Hayden. I coach people online who've decided they want to change and don't know where to start — or have started before and stopped. My job is to make myself unnecessary.</p>
+</section>
+
+<!-- STORY -->
+<section class="story">
+  <div>
+    <div class="story-label">The<br>short<br>version</div>
+    <div class="story-rule"></div>
+  </div>
+  <div class="story-body">
+    <p class="lead">I've been training for over ten years. Different gyms, different approaches, plenty of them wrong at the time.</p>
+    <p>I've been the person training six days a week without missing one. I've also been the person who didn't walk into a gym for months. <strong>Both of those are me.</strong></p>
+    <p>That second part is the reason I coach the way I do. Starting is easy — anyone can be motivated on a Monday. Starting <em>again</em>, after the injury or the busy year or the burnout, is the hard one. Most coaching is built for people who are already going. Mine is built for people who've stopped.</p>
+    <p>So there's no template with your name pasted on it and no bootcamp energy. You get a program built around your week, your equipment and your actual life — and you get me on the other end of it. Not a support team, not a chatbot, not an assistant answering under my name. <strong>One person, one inbox.</strong></p>
+    <p>I'm not interested in keeping you on the plan forever. I'd rather teach you enough that you don't need the plan.</p>
+    <div class="signature">
+      Hayden Cleary
+      <span>Founder &amp; Coach — Hayden Cleary Fitness</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section class="principles">
+  <div class="principles-inner">
+    <div class="eyebrow">
+      <span class="eyebrow-rule"></span>
+      <span class="eyebrow-text">How I coach</span>
+    </div>
+    <h2 class="section-headline">Four things I<br>actually <span>believe.</span></h2>
+    <p class="section-sub">Not a philosophy page. These are the four calls that shape every program I write.</p>
+
+    <div class="principle-grid">
+      <div class="principle">
+        <div class="principle-num">01</div>
+        <div class="principle-title">You're paying for time, not features</div>
+        <div class="principle-text">Every package gets the same thing — the program, the nutrition guidance, the check-ins, the guides. Nothing is locked behind a higher tier. The only difference between four weeks and twelve is how long you've got to make it stick.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">02</div>
+        <div class="principle-title">The plan bends before you break</div>
+        <div class="principle-text">Work goes sideways. Kids get sick. You get three hours of sleep. A program that only works on a perfect week isn't a program. Tell me what changed and we adjust it — that's the whole job.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">03</div>
+        <div class="principle-title">You should know why, not just what</div>
+        <div class="principle-text">Anyone can hand you a spreadsheet of sets and reps. If you don't understand why it's built that way, you're back to guessing the day it ends. I explain the reasoning as we go, on purpose.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">04</div>
+        <div class="principle-title">Honest beats nice</div>
+        <div class="principle-text">If something isn't working, I'll say so. If you've gone quiet for two weeks, I'll ask why. You're not paying me to agree with you — you're paying me to notice.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIRE ME TO FIRE ME -->
+<section class="hmtfm">
+  <div class="hmtfm-inner">
+    <div class="hmtfm-rule"></div>
+    <div>
+      <div class="eyebrow">
+        <span class="eyebrow-rule"></span>
+        <span class="eyebrow-text">The whole idea</span>
+      </div>
+      <h2 class="hmtfm-headline">Hire me to <span>fire me.</span></h2>
+      <p class="hmtfm-text">Most coaching is built to keep you subscribed. That's the business model — stay dependent, keep paying. Mine runs the other way.</p>
+      <p class="hmtfm-text">The day you can build your own week, adjust your own training when life shifts, and eat without checking in with me first — <strong>that's the day the job's done.</strong> You leave, and you don't come back, because you don't need to.</p>
+      <p class="hmtfm-text">That's the result I'm aiming for. Not a client for life. A person who doesn't need a coach.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FIT / NOT FIT -->
+<section class="fit">
+  <div class="fit-inner">
+    <div class="eyebrow">
+      <span class="eyebrow-rule"></span>
+      <span class="eyebrow-text">Before you sign up</span>
+    </div>
+    <h2 class="section-headline">This works for<br>some people. <span>Not all.</span></h2>
+    <p class="section-sub">I'd rather you read this and decide it's not for you than pay me and find out in week two.</p>
+
+    <div class="fit-grid">
+      <div class="fit-col yes">
+        <div class="fit-col-title">This is for you if</div>
+        <div class="fit-item"><span class="fit-mark"></span><span class="fit-text">You've decided you want to change and you're not sure how to start.</span></div>
+        <div class="fit-item"><span class="fit-mark"></span><span class="fit-text">You've started before and stopped — more than once.</span></div>
+        <div class="fit-item"><span class="fit-mark"></span><span class="fit-text">You want to understand what you're doing, not just follow instructions.</span></div>
+        <div class="fit-item"><span class="fit-mark"></span><span class="fit-text">You'll message me when things go sideways instead of going quiet.</span></div>
+        <div class="fit-item"><span class="fit-mark"></span><span class="fit-text">You want a coach who tells you the truth, not one who tells you what you want to hear.</span></div>
+      </div>
+      <div class="fit-col no">
+        <div class="fit-col-title">This isn't for you if</div>
+        <div class="fit-item"><span class="fit-mark"></span><span class="fit-text">You're after a six-week shortcut with no changes to your week.</span></div>
+        <div class="fit-item"><span class="fit-mark"></span><span class="fit-text">You want someone to tell you what to do and nothing else.</span></div>
+        <div class="fit-item"><span class="fit-mark"></span><span class="fit-text">You want a meal plan with foods you're never allowed to eat again.</span></div>
+        <div class="fit-item"><span class="fit-mark"></span><span class="fit-text">You want to be coached forever. I'll be trying to make you redundant from day one.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="get">
+  <div class="get-inner">
+    <div class="eyebrow">
+      <span class="eyebrow-rule"></span>
+      <span class="eyebrow-text">What working with me looks like</span>
+    </div>
+    <h2 class="section-headline">No team.<br>No <span>middleman.</span></h2>
+    <p class="section-sub">Every message you send comes to me. Every program you get, I wrote.</p>
+
+    <div class="get-grid">
+      <div class="get-item">
+        <div class="get-dot"></div>
+        <div>
+          <div class="get-title">Direct access to Hayden</div>
+          <div class="get-desc">Questions, check-ins, adjustments. Not a chatbot, not a template reply.</div>
+        </div>
+      </div>
+      <div class="get-item">
+        <div class="get-dot"></div>
+        <div>
+          <div class="get-title">A program built for you</div>
+          <div class="get-desc">Around your goal, your schedule and the equipment you actually have.</div>
+        </div>
+      </div>
+      <div class="get-item">
+        <div class="get-dot"></div>
+        <div>
+          <div class="get-title">Weekly check-ins</div>
+          <div class="get-desc">What's working, what needs changing, what comes next. Every week.</div>
+        </div>
+      </div>
+      <div class="get-item">
+        <div class="get-dot"></div>
+        <div>
+          <div class="get-title">Nutrition that fits real life</div>
+          <div class="get-desc">A practical approach to eating — not a meal plan that falls apart by Tuesday.</div>
+        </div>
+      </div>
+      <div class="get-item">
+        <div class="get-dot"></div>
+        <div>
+          <div class="get-title">Every Fit Files guide included</div>
+          <div class="get-desc">All the guides come with every coaching package. No extra charge.</div>
+        </div>
+      </div>
+      <div class="get-item">
+        <div class="get-dot"></div>
+        <div>
+          <div class="get-title">Adjustments as life changes</div>
+          <div class="get-desc">The plan moves with you. No rigid program that breaks the first busy week.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section class="creds">
+  <div class="creds-inner">
+    <div class="creds-label">The credentials bit</div>
+    <div class="creds-list">
+      <div class="creds-item"><strong>Qualifications</strong>[ADD: e.g. Cert III &amp; IV in Fitness]</div>
+      <div class="creds-item"><strong>Coaching since</strong>[ADD: year]</div>
+      <div class="creds-item"><strong>Training experience</strong>10+ years</div>
+      <div class="creds-item"><strong>Insurance &amp; ABN</strong>[ADD: ABN number]</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner">
+    <div>
+      <div class="eyebrow">
+        <span class="eyebrow-rule"></span>
+        <span class="eyebrow-text">Next step</span>
+      </div>
+      <h2 class="cta-headline">Try it before<br>you <span>pay me.</span></h2>
+      <p class="cta-sub">Download the free guide, follow it, and see how I coach before you spend anything. If it clicks, you'll know which package to step into.</p>
+    </div>
+    <div class="cta-btns">
+      <a href="hcf_lead_magnet_landing.html" class="btn btn-primary">Get the free guide</a>
+      <a href="index.html" class="btn btn-ghost">See coaching packages</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <div class="footer-brand">Hayden Cleary Fitness</div>
+    <div class="footer-handle">@_haydencleary</div>
+    <div class="footer-legal">© 2026 Hayden Cleary Fitness · All rights reserved</div>
+  </div>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/_haydencleary" class="footer-link" target="_blank" rel="noopener">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
