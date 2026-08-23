@@ -150,6 +150,7 @@ button { cursor: pointer; font-family: 'Poppins', sans-serif; }
   transition: background .2s;
 }
 .nav-cta:hover { background: #6830d4; }
+.nav-link.is-active { color: #7B3FF2; }
 
 /* =============================================
    PAGE HERO
@@ -548,6 +549,8 @@ button { cursor: pointer; font-family: 'Poppins', sans-serif; }
   border: none;
   border-radius: 0;
   text-align: center;
+  display: block;
+  text-decoration: none;
   transition: background .2s, color .2s;
 }
 .tier-btn.dark { background: #000; color: #fff; }
@@ -604,6 +607,8 @@ button { cursor: pointer; font-family: 'Poppins', sans-serif; }
   border-radius: 0;
   flex-shrink: 0;
   white-space: nowrap;
+  display: inline-block;
+  text-decoration: none;
   transition: background .2s;
 }
 .ns-btn:hover { background: #6830d4; }
@@ -705,11 +710,11 @@ button { cursor: pointer; font-family: 'Poppins', sans-serif; }
 <nav class="nav">
   <a href="index.html" class="nav-brand" style="text-decoration:none;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;letter-spacing:.12em;text-transform:uppercase;">Hayden Cleary Fitness</a>
   <div class="nav-links">
-    <a href="#" class="nav-link">The Fit Files</a>
-    <a href="#" class="nav-link">Coaching</a>
-    <a href="#" class="nav-link">Challenges</a>
-    <a href="#" class="nav-link">About</a>
-    <a href="#" class="nav-cta">Free Guide</a>
+    <a href="hcf_fit_files_v2.html" class="nav-link">The Fit Files</a>
+    <a href="index.html" class="nav-link is-active">Coaching</a>
+    <a href="challenges.html" class="nav-link">Challenges</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="hcf_lead_magnet_landing.html" class="nav-cta">Free Guide</a>
   </div>
 </nav>
 
@@ -827,7 +832,7 @@ button { cursor: pointer; font-family: 'Poppins', sans-serif; }
       <div class="tier-desc">
         <p class="tier-desc-text">Download the Trust ebook, follow the 9-day framework, and experience exactly how Hayden coaches — before spending a single dollar. If it resonates, stepping into a paid package is the obvious next move.</p>
       </div>
-      <button class="tier-btn free">Download free</button>
+      <a href="hcf_lead_magnet_landing.html" class="tier-btn free">Download free</a>
     </div>
 
     <!-- THE STARTER -->
@@ -843,13 +848,13 @@ button { cursor: pointer; font-family: 'Poppins', sans-serif; }
           <span class="price-amount" id="price-starter">60</span>
           <span class="price-period">/ week</span>
         </div>
-        <div class="price-total" id="total-starter">$240 billed as one payment</div>
+        <div class="price-total" id="total-starter">$240 total over 4 weeks</div>
         <div class="price-saving" id="saving-starter"></div>
       </div>
       <div class="tier-desc">
         <p class="tier-desc-text">Four weeks to build the habits and get a real taste of what a new lifestyle looks like. Enough time to feel the difference — not just understand it.</p>
       </div>
-      <button class="tier-btn dark">Start the Starter</button>
+      <a href="https://buy.stripe.com/6oU8wQgf2eHr32Gcl92sM04" id="buy-starter" class="tier-btn dark" target="_blank" rel="noopener">Start the Starter</a>
     </div>
 
     <!-- THE TRANSFORMATION -->
@@ -865,13 +870,13 @@ button { cursor: pointer; font-family: 'Poppins', sans-serif; }
           <span class="price-amount" id="price-transform">57</span>
           <span class="price-period">/ week</span>
         </div>
-        <div class="price-total" id="total-transform">$456 billed as one payment</div>
+        <div class="price-total" id="total-transform">$456 total over 8 weeks</div>
         <div class="price-saving" id="saving-transform"></div>
       </div>
       <div class="tier-desc">
         <p class="tier-desc-text">Eight weeks gives you time to not just learn the skills — but implement and adjust them. Things go sideways. Plans change. Eight weeks is where you learn how to handle that and keep going anyway.</p>
       </div>
-      <button class="tier-btn purple">Start the Transformation</button>
+      <a href="https://buy.stripe.com/3cIcN6e6UgPz32G5WL2sM03" id="buy-transform" class="tier-btn purple" target="_blank" rel="noopener">Start the Transformation</a>
     </div>
 
     <!-- THE FULL SEND -->
@@ -887,13 +892,13 @@ button { cursor: pointer; font-family: 'Poppins', sans-serif; }
           <span class="price-amount" id="price-fullsend">55</span>
           <span class="price-period">/ week</span>
         </div>
-        <div class="price-total" id="total-fullsend">$660 billed as one payment</div>
+        <div class="price-total" id="total-fullsend">$660 total over 12 weeks</div>
         <div class="price-saving" id="saving-fullsend"></div>
       </div>
       <div class="tier-desc">
         <p class="tier-desc-text">12 weeks of structured, periodised coaching that doesn't just teach you the lifestyle — it makes it yours. By the end it won't feel like a program. It'll just feel like your life. That's when 99.9% of clients fire me and thank me for it.</p>
       </div>
-      <button class="tier-btn dark">Start the Full Send</button>
+      <a href="https://buy.stripe.com/6oU14o1k8gPz7iW0Cr2sM01" id="buy-fullsend" class="tier-btn dark" target="_blank" rel="noopener">Start the Full Send</a>
     </div>
 
   </div>
@@ -909,7 +914,7 @@ button { cursor: pointer; font-family: 'Poppins', sans-serif; }
     <h3 class="ns-headline">Not sure where<br>to start?</h3>
     <p class="ns-sub">Download The Trust for free. Nine days, zero cost, zero risk. If the framework clicks, you'll know exactly which package to move into. No pressure, no hard sell. Just coaching.</p>
   </div>
-  <button class="ns-btn">Download free ebook</button>
+  <a href="hcf_lead_magnet_landing.html" class="ns-btn">Download free ebook</a>
 </section>
 
 <!-- FOOTER -->
@@ -920,23 +925,34 @@ button { cursor: pointer; font-family: 'Poppins', sans-serif; }
     <div class="footer-legal">© 2026 Hayden Cleary Fitness · All rights reserved</div>
   </div>
   <div class="footer-links">
-    <a href="#" class="footer-link">Privacy</a>
-    <a href="#" class="footer-link">Terms</a>
-    <a href="#" class="footer-link">Contact</a>
+    <a href="https://www.instagram.com/_haydencleary" class="footer-link" target="_blank" rel="noopener">Contact</a>
   </div>
 </footer>
 
 <script>
 const pricing = {
   dd: {
-    starter:   { amount: '60', total: '$240 billed as one payment',  saving: '' },
-    transform: { amount: '57', total: '$456 billed as one payment',  saving: '' },
-    fullsend:  { amount: '55', total: '$660 billed as one payment',  saving: '' },
+    starter:   { amount: '60', total: '$240 total over 4 weeks',  saving: '' },
+    transform: { amount: '57', total: '$456 total over 8 weeks',  saving: '' },
+    fullsend:  { amount: '55', total: '$660 total over 12 weeks',  saving: '' },
   },
   up: {
     starter:   { amount: '50', total: '$200 paid upfront', saving: 'Save $40' },
     transform: { amount: '47', total: '$376 paid upfront', saving: 'Save $80' },
     fullsend:  { amount: '45', total: '$540 paid upfront', saving: 'Save $120' },
+  }
+};
+
+const checkout = {
+  dd: {
+    starter:   'https://buy.stripe.com/6oU8wQgf2eHr32Gcl92sM04',
+    transform: 'https://buy.stripe.com/3cIcN6e6UgPz32G5WL2sM03',
+    fullsend:  'https://buy.stripe.com/6oU14o1k8gPz7iW0Cr2sM01',
+  },
+  up: {
+    starter:   'https://buy.stripe.com/6oU8wQgf2eHr32Gcl92sM04',
+    transform: 'https://buy.stripe.com/6oU4gA9QE42NeLo84T2sM02',
+    fullsend:  'https://buy.stripe.com/6oU9AU7Iwczj7iWdpd2sM00',
   }
 };
 
@@ -962,6 +978,7 @@ function flipToggle() {
     document.getElementById('price-'  + t).textContent = p.amount;
     document.getElementById('total-'  + t).textContent = p.total;
     document.getElementById('saving-' + t).textContent = p.saving;
+    document.getElementById('buy-' + t).href = checkout[mode][t];
   });
 }
 </script>
