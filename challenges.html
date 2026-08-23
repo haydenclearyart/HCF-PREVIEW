@@ -9,16 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* =============================================
-   DRAFT BANNER — DELETE THIS WHOLE BLOCK BEFORE GO-LIVE
-   ============================================= */
-.draft-banner{position:fixed;top:0;left:0;right:0;z-index:9999;background:#F4F0FE;border-bottom:2px solid #7B3FF2;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-family:'Poppins',sans-serif;}
-.draft-badge{display:flex;align-items:center;gap:10px;}
-.draft-pill{background:#7B3FF2;color:#fff;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;flex-shrink:0;}
-.draft-text{font-size:12px;color:#2E2E2B;font-weight:500;}
-.draft-text strong{color:#7B3FF2;font-weight:700;}
-.draft-note{font-size:11px;color:#5C5C58;text-align:right;}
-
-/* =============================================
    RESET & BASE
    ============================================= */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,7 +19,6 @@ body {
   line-height: 1.6;
   color: #2E2E2B;
   background: #fff;
-  padding-top: 48px; /* offset for draft banner — remove with the banner */
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -181,15 +170,6 @@ a { text-decoration: none; }
 </style>
 </head>
 <body>
-
-<!-- DRAFT BANNER — DELETE THIS BLOCK BEFORE GO-LIVE -->
-<div class="draft-banner" role="banner" aria-label="Draft preview notice">
-  <div class="draft-badge">
-    <span class="draft-pill">Draft</span>
-    <span class="draft-text">This page is a <strong>work in progress</strong> — not live, not final. Shared for feedback only.</span>
-  </div>
-  <span class="draft-note">Prices, copy, and imagery subject to change before launch.</span>
-</div>
 
 <!-- NAV -->
 <nav class="nav">
