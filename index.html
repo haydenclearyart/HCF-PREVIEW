@@ -827,8 +827,13 @@ button { cursor: pointer; font-family: 'Poppins', sans-serif; }
     .meet-coach__rule{width:64px;height:3px;background:#7B3FF2;margin-bottom:26px;}
     .meet-coach p{font-family:'Poppins',sans-serif;font-size:16px;line-height:1.7;color:#5C5C58;margin:0 0 18px;max-width:46ch;}
     .meet-coach__link{display:inline-block;margin-top:8px;font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;color:#7B3FF2;text-decoration:none;border-bottom:2px solid #7B3FF2;padding-bottom:2px;}
+    .meet-coach__actions{display:flex;flex-wrap:wrap;align-items:center;gap:24px;margin-top:14px;}
+    .meet-coach__btn{display:inline-flex;align-items:center;gap:10px;background:#7B3FF2;color:#FFFFFF;font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;text-decoration:none;padding:14px 26px;border-radius:0;min-height:48px;transition:background 180ms ease;}
+    .meet-coach__btn:hover{background:#6A34D8;}
+    .meet-coach__btn svg{flex:0 0 auto;}
     @media (max-width:840px){
       .meet-coach{padding:0 24px;}
+      .meet-coach__actions{gap:16px;}
       .meet-coach__inner{grid-template-columns:1fr;gap:0;}
       .meet-coach__copy{padding:56px 0 40px;order:1;}
       .meet-coach__fig{order:2;}
@@ -845,7 +850,13 @@ button { cursor: pointer; font-family: 'Poppins', sans-serif; }
       <div class="meet-coach__rule"></div>
       <p>I'm Hayden. I coach people who've started before and stopped — more than once. No shame in it, that's most people.</p>
       <p>The job isn't to keep you paying me forever. It's to hand you the plan, the habits and the reasons they work, so you don't need me at the end of it.</p>
-      <a class="meet-coach__link" href="about.html">More about how I coach</a>
+      <div class="meet-coach__actions">
+        <a class="meet-coach__btn" href="hcf_coaching_video.html">
+          <svg width="14" height="16" viewBox="0 0 14 16" aria-hidden="true"><path d="M0 0l14 8-14 8z" fill="currentColor"/></svg>
+          Watch my coaching video
+        </a>
+        <a class="meet-coach__link" href="about.html">More about how I coach</a>
+      </div>
     </div>
   </div>
 </section>
