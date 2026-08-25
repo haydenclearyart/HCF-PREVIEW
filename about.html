@@ -581,6 +581,98 @@ img { display: block; max-width: 100%; }
     </div>
   </div>
 </section>
+   <!-- ==========================================================
+     HCF — ABOUT PAGE · CERTIFICATE SECTION
+     Paste this directly AFTER the closing </section> of the
+     credentials block (the one ending around line 584).
+     Image sits in the top level of the repo, same place as about.html.
+     ========================================================== -->
+ 
+<section class="hcf-cert" id="certificate">
+  <style>
+    .hcf-cert{
+      background:#F4F0FE;
+      padding:96px 24px;
+      font-family:'Poppins',sans-serif;
+      color:#5C5C58;
+    }
+    .hcf-cert__inner{
+      max-width:1000px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:64px;
+      align-items:center;
+    }
+    .hcf-cert__eyebrow{
+      font-size:13px;
+      font-weight:500;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:#7B3FF2;
+      margin-bottom:14px;
+    }
+    .hcf-cert h2{
+      font-family:'Space Grotesk',sans-serif;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.03em;
+      font-size:clamp(28px,4vw,40px);
+      line-height:1.12;
+      color:#000000;
+      margin:0 0 20px;
+    }
+    .hcf-cert__rule{
+      width:64px;
+      height:3px;
+      background:#7B3FF2;
+      margin-bottom:28px;
+    }
+    .hcf-cert p{
+      font-size:16px;
+      line-height:1.7;
+      margin:0 0 20px;
+      max-width:46ch;
+    }
+    .hcf-cert p:last-child{margin-bottom:0;}
+    .hcf-cert figure{margin:0;}
+    .hcf-cert figure img{
+      display:block;
+      width:100%;
+      height:auto;
+      border:1px solid #DEDEDA;
+      border-radius:0;
+      background:#FFFFFF;
+    }
+    .hcf-cert figcaption{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      color:#5C5C58;
+      margin-top:14px;
+    }
+    @media (max-width:840px){
+      .hcf-cert{padding:64px 24px;}
+      .hcf-cert__inner{grid-template-columns:1fr;gap:36px;}
+    }
+  </style>
+ 
+  <div class="hcf-cert__inner">
+    <div>
+      <div class="hcf-cert__eyebrow">The paperwork</div>
+      <h2>Qualified,<br>then ten years of doing it</h2>
+      <div class="hcf-cert__rule"></div>
+      <p>I came through the Australian Institute of Fitness as a Master Trainer. That's the certificate on the right.</p>
+      <p>What sits behind it matters more — a decade of my own training, my own stops and restarts, and coaching real people back into the gym after time away. You're not hiring a piece of paper.</p>
+    </div>
+ 
+    <figure>
+      <img src="hayden-cleary-master-trainer-2017.jpg"
+           alt="Australian Institute of Fitness certificate awarding Hayden Cleary Master Trainer Level 1, dated 11 August 2017.">
+      <figcaption>Australian Institute of Fitness &middot; 2017</figcaption>
+    </figure>
+  </div>
+</section>
 
 <!-- CTA -->
 <section class="cta">
