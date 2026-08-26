@@ -61,7 +61,7 @@
       <h1 id="headline">Your guide is<br><span class="accent">downloading now.</span></h1>
       <p class="sub">Start It or Stall It — your free nine-day guide to getting started. It should land in your downloads folder within a few seconds.</p>
 
-      <a id="dlBtn" class="dl-btn" href="guides/HCF_StartItOrStallIt_Free_Guide.pdf" download="HCF_StartItOrStallIt_Free_Guide.pdf">Download the guide</a>
+      <a id="dlBtn" class="dl-btn" href="HCF_StartItOrStallIt_Free_Guide.pdf" download="HCF_StartItOrStallIt_Free_Guide.pdf">Download the guide</a>
       <p class="fallback">Nothing happened? Tap the button above. Still stuck — email <a href="mailto:haydenclearyfit@gmail.com">haydenclearyfit@gmail.com</a> and I'll send it straight to you.</p>
 
       <div class="divider"></div>
@@ -89,11 +89,26 @@
       h.innerHTML = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase() +
                     ', your guide is<br><span class="accent">downloading now.</span>';
     }
-    // Auto-trigger the download. Real hosted file + download attribute:
-    // works on desktop and iOS/Android. Button remains as the manual fallback.
-    setTimeout(function () {
-      try { document.getElementById('dlBtn').click(); } catch (e) {}
-    }, 700);
+    // Resolve the guide's real location, then auto-trigger the download.
+    // Tries the tidy filename first, falls back to the legacy upload name.
+    var btn = document.getElementById('dlBtn');
+    var CLEAN  = 'HCF_StartItOrStallIt_Free_Guide.pdf';
+    var LEGACY = 'guides%3AHCF_StartItOrStallIt_Free_Guide.pdf.pdf';
+
+    function isPdf(res) {
+      return res.ok && (res.headers.get('content-type') || '').indexOf('pdf') !== -1;
+    }
+    function fire() { try { btn.click(); } catch (e) {} }
+
+    fetch(CLEAN, { method: 'HEAD' })
+      .then(function (res) {
+        if (!isPdf(res)) { btn.setAttribute('href', LEGACY); }
+        setTimeout(fire, 400);
+      })
+      .catch(function () {
+        btn.setAttribute('href', LEGACY);
+        setTimeout(fire, 400);
+      });
   })();
 </script>
 </body>
