@@ -259,7 +259,7 @@
           <div class="guide-preview-text"><strong>Start It or Stall It</strong>Your Free Nine-Day Guide to Get Started</div>
         </div>
         <h2 class="form-heading">Get the free guide</h2>
-        <p class="form-sub">Drop your details below. The guide lands straight in your inbox — no spam, no upsells, just the stuff that actually works.</p>
+        <p class="form-sub">Drop your details below and the download starts on the next screen — no waiting, no spam, no upsells.</p>
         <form id="leadForm" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="518dc984-1b36-44f5-867e-1eceb19151e2">
           <input type="hidden" name="subject" value="New HCF Lead — Start It or Stall It">
@@ -268,7 +268,7 @@
           <div class="form-field"><label for="name">Full name <span class="required">*</span></label><input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required></div>
           <div class="form-field"><label for="email">Email address <span class="required">*</span></label><input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" required></div>
           <div class="form-field"><label for="phone">Phone number <span class="required">*</span></label><input type="tel" id="phone" name="phone" placeholder="04XX XXX XXX" autocomplete="tel" required></div>
-          <button type="submit" class="form-submit">Send me the free guide</button>
+          <button type="submit" class="form-submit">Get my free guide</button>
         </form>
         <p class="form-privacy">Your details are kept private. No spam. Unsubscribe any time.</p>
       </div>
@@ -316,7 +316,7 @@
     </div>
   </footer>
 </div>
-<a id="pdfDownload" href="data:application/pdf;base64,JVBERi0xLjcK" download="HCF_StartItOrStallIt_Free_Guide.pdf" style="display:none"></a>
+
 <script>
   const wrapper = document.getElementById('videoWrapper');
   const video = document.getElementById('heroVideo');
@@ -341,9 +341,17 @@
       const data = new FormData(form);
       const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
       const json = await res.json();
-      if (json.success) { btn.textContent = 'On its way!'; document.getElementById('pdfDownload').click(); }
+      if (json.success) {
+        btn.textContent = 'Opening your download...';
+        var nm = encodeURIComponent((form.querySelector('#name').value || '').trim());
+        window.location.href = 'thanks.html?n=' + nm;
+      }
       else { btn.textContent = 'Something went wrong — try again'; btn.disabled = false; }
-    } catch (err) { btn.textContent = 'Something went wrong — try again'; btn.disabled = false; }
+    } catch (err) {
+      // Lead capture failed, but never withhold the guide we advertised.
+      btn.textContent = 'Opening your download...';
+      window.location.href = 'thanks.html';
+    }
   });
 </script>
 </body>
