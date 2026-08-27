@@ -80,10 +80,29 @@ button { cursor: pointer; font-family: 'Poppins', sans-serif; }
    ============================================= */
 .page-hero {
   background: #000;
-  padding: 72px 48px 60px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  padding: 0;
+}
+.hero-video-wrap {
+  width: 100%;
+  background: #000;
+  line-height: 0;
+}
+.hero-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1600 / 516;
+  object-fit: cover;
+}
+.hero-text {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.hero-sub-bar {
+  padding: 28px 48px 48px;
 }
 .eyebrow {
   display: flex;
@@ -585,7 +604,20 @@ button { cursor: pointer; font-family: 'Poppins', sans-serif; }
 @media (max-width: 900px) {
   .nav { padding: 14px 24px; }
   .nav-links { gap: 16px; }
-  .page-hero { padding: 48px 24px 40px; }
+  .page-hero { padding: 0; }
+  .hero-video-wrap { display: none; }
+  .hero-text {
+    position: static;
+    width: auto; height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 48px 24px 0;
+  }
+  .hero-sub-bar { padding: 16px 24px 40px; }
   .page-headline { font-size: 36px; }
   .ege-section { padding: 56px 24px 48px; }
   .ege-headline { font-size: 44px; }
@@ -632,12 +664,21 @@ button { cursor: pointer; font-family: 'Poppins', sans-serif; }
 
 <!-- PAGE HERO -->
 <section class="page-hero">
-  <div class="eyebrow">
-    <span class="eyebrow-rule"></span>
-    <span class="eyebrow-text">1-on-1 Online Coaching</span>
+  <div class="hero-video-wrap">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="hcf_banner_poster.jpg">
+      <source src="hcf_banner_hero.mp4" type="video/mp4">
+    </video>
   </div>
-  <h1 class="page-headline">The right package<br>is the one you'll<br><span>actually finish.</span></h1>
-  <p class="page-sub">Every package includes everything. The only difference is time. More weeks means more room to learn, adjust, and make this your life — not just a phase.</p>
+  <div class="hero-text">
+    <div class="eyebrow">
+      <span class="eyebrow-rule"></span>
+      <span class="eyebrow-text">1-on-1 Online Coaching</span>
+    </div>
+    <h1 class="page-headline">The right package<br>is the one you'll<br><span>actually finish.</span></h1>
+  </div>
+  <div class="hero-sub-bar">
+    <p class="page-sub">Every package includes everything. The only difference is time. More weeks means more room to learn, adjust, and make this your life — not just a phase.</p>
+  </div>
 </section>
 
 <!-- EVERYONE GETS EVERYTHING -->
