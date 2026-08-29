@@ -81,6 +81,17 @@
     -2px  0   0 rgba(0,0,0,.75);
 }
 
+/* Gradient-filled headline words (Fit Files) have a transparent text fill,
+   so text-shadow bleeds through the glyphs. Use drop-shadow on the rendered
+   text instead - works for solid and gradient fills alike. */
+.hero-headline span,
+.page-headline span,
+.legal-title span,
+.soon-headline span {
+  text-shadow: none;
+  filter: drop-shadow(0 0 12px rgba(0,0,0,.92)) drop-shadow(0 2px 3px rgba(0,0,0,.85));
+}
+
 .hero-sub,
 .page-sub,
 .legal-sub,
