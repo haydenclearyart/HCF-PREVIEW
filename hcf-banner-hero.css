@@ -55,7 +55,7 @@
 }
 
 /* Lift all hero content above the scrims */
-.hero > *,
+.hero > *:not(.hero-glow):not(.hero-glow2),
 .page-hero > *,
 .legal-hero > *,
 .soon > * {
@@ -106,7 +106,7 @@
 
 /* Fit Files page has its own glow layers - keep them under the content */
 .hero-glow,
-.hero-glow2 { z-index: 0 !important; }
+.hero-glow2 { position: absolute !important; z-index: 0 !important; }
 
 /* ---------- TABLET ---------- */
 @media (max-width: 1100px) {
